@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "react-bootstrap";
+import { Col, Row, Container, Button } from "react-bootstrap";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
@@ -29,6 +29,20 @@ function Search() {
 
     };
 
+    function handleAdd(key, title, authors, description, image, link) {
+        API.saveBook({
+            key: key,
+            title: title,
+            authors: authors,
+            description: description,
+            image: image,
+            link: link
+        })
+            .then(
+                console.log(title + " added!"))
+            .catch(err => console.log(err));
+    }
+
     return (
         <Container fluid>
             <Row>
@@ -41,12 +55,12 @@ function Search() {
                                 name="title"
                                 placeholder="Title (required)"
                             />
-                            <button className="btn btn-primary input-group-append"
+                            <Button className="btn btn-primary input-group-append"
                                 disabled={!(formObject.title)}
                                 onClick={handleFormSubmit}
                             >
                                 Search
-              </button>
+              </Button>
                         </div>
                     </Jumbotron>
                 </Col>
@@ -59,29 +73,59 @@ function Search() {
                     {resultsList.length ? (
                         <List>
                             {resultsList.map(book => {
+                                let id = "";
+                                id = book.id;
+                                let title = "";
+                                if (book.volumeInfo.title === undefined) {
+                                    title = "No Title";
+                                } else {
+                                    title = book.volumeInfo.title;
+                                }
+                                let authors = [];
+                                if (book.volumeInfo.authors === undefined) {
+                                    authors = ["No Author"];
+                                } else {
+                                    authors = book.volumeInfo.authors;
+                                }
+                                let description = "";
+                                if (book.volumeInfo.description) {
+                                    description = book.volumeInfo.description;
+                                } else {
+                                    description = "No description.";
+                                }
+                                let image = "";
+                                if (book.volumeInfo.imageLinks === undefined) {
+                                    image = "https://placehold.it/128x128";
+                                } else {
+                                    image = book.volumeInfo.imageLinks.thumbnail;
+                                }
+                                let link = "";
+                                if (book.volumeInfo.previewLink) {
+                                    link = book.volumeInfo.previewLink
+                                } else {
+                                    link = ""
+                                }
                                 return (
-                                    <ListItem key={book.id}>
-                                        <a href={book.volumeInfo.previewLink}>
-                                            <strong>
-                                                {book.volumeInfo.title} by {book.volumeInfo.authors}
-                                            </strong>
-                                        </a>
+                                    <ListItem key={id}>
+                                        <strong>
+                                            {title} by {authors}
+                                        </strong>
                                         <Row>
                                             <Col>
-                                                <img src={book.volumeInfo.imageLinks.thumbnail} />
+                                                <img src={image} alt={title} />
                                             </Col>
                                             <Col size="md-10 md-offset-1">
                                                 <article>
                                                     <h1>Description</h1>
                                                     <p>
-                                                        {book.volumeInfo.description}
+                                                        {description}
                                                     </p>
                                                 </article>
                                             </Col>
                                         </Row>
 
-                                        <button>View</button>
-                                        <button>Add</button>
+                                        <Button className="btn btn-primary" href={link} target="_blank">View</Button>
+                                        <Button className="btn btn-primary" onClick={() => handleAdd(id, title, authors, description, image, link)}>Add</Button>
                                     </ListItem>
                                 )
                             })}
