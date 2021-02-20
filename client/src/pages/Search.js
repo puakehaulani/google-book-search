@@ -35,15 +35,14 @@ function Search() {
     // Then reload books from the database
     function handleFormSubmit(event) {
         event.preventDefault();
-        if (formObject.title && formObject.author) {
-            API.saveBook({
-                title: formObject.title,
-                author: formObject.author,
-                synopsis: formObject.synopsis
-            })
-                .then(res => loadBooks())
-                .catch(err => console.log(err));
-        }
+        const title = formObject.title
+
+        API.googleBook(title)
+            .then(res =>
+                // loadBooks())
+                console.log(res))
+            .catch(err => console.log(err));
+
     };
 
     return (
@@ -52,21 +51,20 @@ function Search() {
                 <Col size="md-6">
                     <Jumbotron>
                         <h1>What Books Should I Read?</h1>
+                        <div className="input-group">
+                            <Input
+                                onChange={handleInputChange}
+                                name="title"
+                                placeholder="Title (required)"
+                            />
+                            <button className="btn btn-primary input-group-append"
+                                disabled={!(formObject.title)}
+                                onClick={handleFormSubmit}
+                            >
+                                Search
+              </button>
+                        </div>
                     </Jumbotron>
-                    <form>
-                        <Input
-                            onChange={handleInputChange}
-                            name="title"
-                            placeholder="Title (required)"
-                        />
-
-                        <FormBtn
-                            disabled={!(formObject.author && formObject.title)}
-                            onClick={handleFormSubmit}
-                        >
-                            Submit Book
-              </FormBtn>
-                    </form>
                 </Col>
             </Row>
             <Row>
