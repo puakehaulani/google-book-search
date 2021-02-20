@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
+import { Col, Row, Container, Button } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
@@ -25,13 +24,6 @@ function Search() {
             )
             .catch(err => console.log(err));
     };
-
-    // Deletes a book from the database with a given id, then reloads books from the db
-    function deleteBook(id) {
-        API.deleteBook(id)
-            .then(res => loadBooks())
-            .catch(err => console.log(err));
-    }
 
     // Handles updating component state when the user types into the input field
     function handleInputChange(event) {
@@ -80,9 +72,49 @@ function Search() {
               </FormBtn>
                     </form>
                 </Col>
-
             </Row>
+            <Row>
+                <Col size="md-6 sm-12">
+                    <Jumbotron>
+                        <h1>Results</h1>
+                    </Jumbotron>
+                    {books.length ? (
+                        <List>
+                            {books.map(book => (
+                                <ListItem key={book._id}>
+                                    <a href={book.url}>
+                                        <strong>
+                                            {book.title} by {book.author}
+                                        </strong>
+                                    </a>
+                                    <Row>
+                                        <Col>
+                                            <img src={book.image} />
+                                        </Col>
+                                        <Col size="md-10 md-offset-1">
+                                            <article>
+                                                <h1>Description</h1>
+                                                <p>
+                                                    {book.description}
+                                                </p>
+                                            </article>
+                                        </Col>
+                                    </Row>
+
+                                    <Button>View</Button>
+                                    <Button>Add</Button>
+                                </ListItem>
+                            ))}
+                        </List>
+                    ) : (
+                            <h3>No Results to Display</h3>
+                        )}
+                </Col>
+            </Row>
+
         </Container>
+
+
     );
 }
 

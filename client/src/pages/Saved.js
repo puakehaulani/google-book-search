@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Col, Row, Container, Button } from "../components/Grid";
@@ -52,16 +51,16 @@ function Saved() {
                                         </Col>
                                         <Col size="md-10 md-offset-1">
                                             <article>
-                                                <h1>Synopsis</h1>
+                                                <h1>Description</h1>
                                                 <p>
-                                                    {book.synopsis}
+                                                    {book.description}
                                                 </p>
                                             </article>
                                         </Col>
                                     </Row>
 
-                                    <button>View</button>
-                                    <DeleteBtn onClick={() => deleteBook(book._id)} />
+                                    <Button>View</Button>
+                                    <Button onClick={() => deleteBook(book._id)}>Delete</Button>
                                 </ListItem>
                             ))}
                         </List>
