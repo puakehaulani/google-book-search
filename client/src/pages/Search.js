@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container, Button } from "../components/Grid";
+import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 
@@ -59,11 +59,7 @@ function Search() {
                             name="title"
                             placeholder="Title (required)"
                         />
-                        <Input
-                            onChange={handleInputChange}
-                            name="author"
-                            placeholder="Author (required)"
-                        />
+
                         <FormBtn
                             disabled={!(formObject.author && formObject.title)}
                             onClick={handleFormSubmit}
@@ -101,8 +97,8 @@ function Search() {
                                         </Col>
                                     </Row>
 
-                                    <Button>View</Button>
-                                    <Button>Add</Button>
+                                    <button>View</button>
+                                    <button>Add</button>
                                 </ListItem>
                             ))}
                         </List>
