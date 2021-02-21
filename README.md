@@ -1,29 +1,66 @@
-# Create React Express App
+# google Book Search
 
-## About This Boilerplate
+![Search Screenshot](assets/search.png)  
+![Results Screenshot](assets/results.png)  
+![Saved Screenshot](assets/saved.png)
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+[Explore the docs](https://github.com/puakehaulani/google-book-search)  
+[See the deployment](https://warm-atoll-10602.herokuapp.com/)
 
-## Starting the app locally
+---
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+## Table of Contents
 
-```
-npm install
-```
+- [About the Project](#About-the-Project)
+- [Usage](#Usage)
+- [Getting Started](#Getting-Started)
+  - [Installation](#Installation)
+- [Testing](#Testing)
+- [Contributing](#Contributing)
+- [License](#License)
+- [Questions](#Questions)
 
-This should install node modules within the server and the client folder.
+## About the Project
 
-After both installations complete, run the following command in your terminal:
+google Book Search calls the google Books API to search for books by title, and save books to a database, to be referenced any time in the future. It is made with React.
 
-```
-npm start
-```
+## Usage
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+Run the following commands in your terminal
 
-## Deployment (Heroku)
+    npm start
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+Navigate in the browser to
+
+    localhost:3000
+
+## Getting Started
+
+To get started, follow these steps:
+
+### Installation
+
+Run the following commands in your terminal
+
+    npm i
+
+## Testing
+
+Run the following command in your terminal
+
+    npm test
+
+## Contributing
+
+Contributions are welcome! Please create an issue or pull request with your input.
+
+## License
+
+This application is covered under the MIT license
+
+## Questions
+
+For any questions, please reach out to <puakehaulani@gmail.com>  
+[Developer repo](http://github.com/puakehaulani)
