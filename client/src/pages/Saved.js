@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
+import { Col, Row, Button, Container } from "react-bootstrap";
 
 
 function Saved() {
@@ -48,7 +48,7 @@ function Saved() {
                                     </a>
                                     <Row>
                                         <Col>
-                                            <img src={book.image} />
+                                            <img src={book.image} alt={book.title} />
                                         </Col>
                                         <Col size="md-10 md-offset-1">
                                             <article>
@@ -60,8 +60,8 @@ function Saved() {
                                         </Col>
                                     </Row>
 
-                                    <button>View</button>
-                                    <button onClick={() => deleteBook(book._id)}>Delete</button>
+                                    <Button className="btn btn-primary" href={book.link} target="_blank">View</Button>
+                                    <Button className="btn btn-primary" onClick={() => deleteBook(book._id)}>Delete</Button>
                                 </ListItem>
                             ))}
                         </List>

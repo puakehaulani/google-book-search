@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container, Button } from "react-bootstrap";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input } from "../components/Form";
 
 function Search() {
     // Setting our component's initial state
@@ -107,25 +106,26 @@ function Search() {
                                 }
                                 return (
                                     <ListItem key={id}>
-                                        <strong>
-                                            {title} by {authors}
-                                        </strong>
                                         <Row>
-                                            <Col>
-                                                <img src={image} alt={title} />
-                                            </Col>
+
+                                            <img src={image} alt={title} />
+
                                             <Col size="md-10 md-offset-1">
                                                 <article>
-                                                    <h1>Description</h1>
+                                                    <h2>{title}</h2>
+                                                    <h3>by {authors}</h3>
+                                                    <br />
+                                                    <h5>Description</h5>
                                                     <p>
                                                         {description}
                                                     </p>
                                                 </article>
                                             </Col>
                                         </Row>
-
-                                        <Button className="btn btn-primary" href={link} target="_blank">View</Button>
-                                        <Button className="btn btn-primary" onClick={() => handleAdd(id, title, authors, description, image, link)}>Add</Button>
+                                        <Row className="mt-2">
+                                            <Button className="btn btn-primary" href={link} target="_blank">View</Button>
+                                            <Button className="btn btn-primary" onClick={() => handleAdd(id, title, authors, description, image, link)}>Add</Button>
+                                        </Row>
                                     </ListItem>
                                 )
                             })}
@@ -136,7 +136,7 @@ function Search() {
                 </Col>
             </Row>
 
-        </Container>
+        </Container >
 
 
     );
