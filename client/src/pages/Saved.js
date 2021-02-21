@@ -41,27 +41,25 @@ function Saved() {
                         <List>
                             {books.map(book => (
                                 <ListItem key={book._id}>
-                                    <a href={book.url}>
-                                        <strong>
-                                            {book.title} by {book.author}
-                                        </strong>
-                                    </a>
                                     <Row>
-                                        <Col>
-                                            <img src={book.image} alt={book.title} />
-                                        </Col>
+
+                                        <img src={book.image} alt={book.title} />
+
                                         <Col size="md-10 md-offset-1">
                                             <article>
-                                                <h1>Description</h1>
+                                                <h2>{book.title}</h2>
+                                                <h3> by {book.author}</h3>
+                                                <h5>Description</h5>
                                                 <p>
                                                     {book.description}
                                                 </p>
                                             </article>
                                         </Col>
                                     </Row>
-
-                                    <Button className="btn btn-primary" href={book.link} target="_blank">View</Button>
-                                    <Button className="btn btn-primary" onClick={() => deleteBook(book._id)}>Delete</Button>
+                                    <Row className="mt-2">
+                                        <Button className="btn btn-primary" href={book.link} target="_blank">View</Button>
+                                        <Button className="btn btn-primary" onClick={() => deleteBook(book._id)}>Delete</Button>
+                                    </Row>
                                 </ListItem>
                             ))}
                         </List>
