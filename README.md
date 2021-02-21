@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [Explore the docs](https://github.com/puakehaulani/google-book-search)  
-[See the deployment](https://warm-atoll-10602.herokuapp.com/)
+[See the deployment](https://glacial-mesa-16518.herokuapp.com/)
 
 ---
 
