@@ -48,7 +48,7 @@ function Saved() {
                                         <Col size="md-10 md-offset-1">
                                             <article>
                                                 <h2>{book.title}</h2>
-                                                <h3> by {book.author}</h3>
+                                                <h3> by {book.authors}</h3>
                                                 <h5>Description</h5>
                                                 <p>
                                                     {book.description}
