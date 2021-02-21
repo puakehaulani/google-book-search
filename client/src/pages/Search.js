@@ -9,13 +9,14 @@ function Search() {
     // Setting our component's initial state
     const [formObject, setFormObject] = useState({})
     const [resultsList, setResultsList] = useState({});
+    const [added, setAdded] = useState();
+
 
     // Handles updating component state when the user types into the input field
     function handleInputChange(event) {
         const { name, value } = event.target;
         setFormObject({ ...formObject, [name]: value })
     };
-
 
     function handleFormSubmit(event) {
         event.preventDefault();
@@ -37,8 +38,9 @@ function Search() {
             image: image,
             link: link
         })
-            .then(
-                console.log(title + " added!"))
+            .then(res =>
+                setAdded(res.title))
+
             .catch(err => console.log(err));
     }
 
@@ -48,13 +50,13 @@ function Search() {
                 <Col size="md-6">
                     <Jumbotron>
                         <h1>What Books Should I Read?</h1>
-                        <div className="input-group">
+                        <div>
                             <Input
                                 onChange={handleInputChange}
                                 name="title"
                                 placeholder="Title (required)"
                             />
-                            <Button className="btn btn-primary input-group-append"
+                            <Button className="btn btn-primary"
                                 disabled={!(formObject.title)}
                                 onClick={handleFormSubmit}
                             >
